@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Star } from 'lucide-react';
 import { Product } from '@/hooks/useProducts';
 
@@ -21,7 +21,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   };
 
   return (
-    <Link to={`/product/${product.id}`}>
+    <Link href={`/product/${product.id}`}>
       <div className="group glass-card overflow-hidden hover:bg-[hsl(0_0%_100%/0.08)] hover:border-[hsl(0_0%_100%/0.15)] transition-all duration-300">
         {/* Image Container */}
         <div className="relative aspect-square overflow-hidden bg-muted">

@@ -1,15 +1,21 @@
+
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
+import QueryProvider from "@/providers/query-provider";
+// import { Toaster } from "@/components/ui/toaster";
+// import { Toaster as Sonner } from "@/components/ui/sonner";
+// import { TooltipProvider } from "@/components/ui/tooltip";
+// import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import { AuthProvider } from "@/contexts/AuthContext";
+// import { ThemeProvider } from "@/components/ThemeProvider";
+// import Navbar from "@/components/Navbar";
+// import ProtectedRoute from "@/components/ProtectedRoute";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
@@ -23,11 +29,103 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+      <QueryProvider>
+        <body className="min-h-full flex flex-col">{children}</body>
+      </QueryProvider>
     </html>
   );
 }
+
+//  <ThemeProvider
+//           attribute="class"
+//           defaultTheme="system"
+//           enableSystem
+//           disableTransitionOnChange
+//         >
+//           <TooltipProvider>
+//             <AuthProvider>
+//               <Toaster />
+//               <Sonner />
+//               <BrowserRouter>
+//                 <div className="min-h-screen flex flex-col bg-background relative">
+//                   {/* Subtle monochrome gradient background with glass feel */}
+//                   <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
+//                     <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/5 to-transparent" />
+//                     <div className="absolute top-0 left-1/4 w-[60vw] h-[40vh] bg-gradient-to-b from-muted/10 via-muted/5 to-transparent blur-3xl" />
+//                     <div className="absolute bottom-0 right-1/4 w-[50vw] h-[30vh] bg-gradient-to-t from-muted/8 to-transparent blur-3xl" />
+//                   </div>
+//                   <Navbar />
+//                   <main className="flex-1">
+//                     <Routes>
+//                       <Route path="/" element={<Index />} />
+//                       <Route path="/products" element={<Products />} />
+//                       <Route path="/product/:id" element={<ProductDetail />} />
+//                       <Route path="/cart" element={<Cart />} />
+//                       <Route path="/checkout" element={<Checkout />} />
+//                       <Route path="/login" element={<Login />} />
+//                       <Route path="/signup" element={<Signup />} />
+//                       <Route
+//                         path="/wishlist"
+//                         element={
+//                           <ProtectedRoute>
+//                             <Wishlist />
+//                           </ProtectedRoute>
+//                         }
+//                       />
+//                       <Route
+//                         path="/profile"
+//                         element={
+//                           <ProtectedRoute>
+//                             <Profile />
+//                           </ProtectedRoute>
+//                         }
+//                       />
+//                       <Route
+//                         path="/orders"
+//                         element={
+//                           <ProtectedRoute>
+//                             <Orders />
+//                           </ProtectedRoute>
+//                         }
+//                       />
+//                       <Route
+//                         path="/admin"
+//                         element={
+//                           <ProtectedRoute>
+//                             <AdminDashboard />
+//                           </ProtectedRoute>
+//                         }
+//                       />
+//                       <Route
+//                         path="/profile/addresses"
+//                         element={
+//                           <ProtectedRoute>
+//                             <Addresses />
+//                           </ProtectedRoute>
+//                         }
+//                       />
+//                       <Route
+//                         path="/profile/payments"
+//                         element={
+//                           <ProtectedRoute>
+//                             <PaymentMethods />
+//                           </ProtectedRoute>
+//                         }
+//                       />
+//                       <Route
+//                         path="/profile/notifications"
+//                         element={
+//                           <ProtectedRoute>
+//                             <NotificationSettings />
+//                           </ProtectedRoute>
+//                         }
+//                       />
+//                       <Route path="*" element={<NotFound />} />
+//                     </Routes>
+//                   </main>
+//                 </div>
+//               </BrowserRouter>
+//             </AuthProvider>
+//           </TooltipProvider>
+//         </ThemeProvider>

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Category } from '@/hooks/useProducts';
 import {
   Smartphone,
@@ -32,7 +32,7 @@ const CategoryIcon = ({ category }: CategoryIconProps) => {
 
   return (
     <Link
-      to={`/products?category=${category.id}`}
+      href={`/products?category=${category.id}`}
       className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-muted transition-colors group"
     >
       <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center group-hover:bg-foreground/10 transition-colors">
