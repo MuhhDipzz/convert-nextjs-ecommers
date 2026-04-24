@@ -10,7 +10,6 @@ import QueryProvider from "@/providers/query-provider";
 import { AuthProvider } from "@/contexts/AuthContext";
 // import { ThemeProvider } from "@/components/ThemeProvider";
 // import Navbar from "@/components/Navbar";
-// import ProtectedRoute from "@/components/ProtectedRoute";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+    <html data-scroll-behavior="smooth" lang="en" className={`${inter.variable} h-full antialiased`}>
       <AuthProvider>
         <QueryProvider>
           <body className="min-h-full flex flex-col">{children}</body>

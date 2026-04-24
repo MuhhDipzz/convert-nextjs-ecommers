@@ -1,4 +1,7 @@
-import { Navigate, useLocation } from 'react-router-dom';
+'use client'
+
+import { useEffect } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { Loader2 } from 'lucide-react';
 
@@ -8,7 +11,14 @@ interface ProtectedRouteProps {
 
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   const { user, loading } = useAuth();
-  const location = useLocation();
+  const router = useRouter();
+  const pathName = usePathname(); 
+
+  useEffect(() => {
+    if(!loading && !user){
+    router.replace(`/login?from=${pathName}`)
+    }
+  }, [user, loading, router, pathName])
 
   if (loading) {
     return (
@@ -18,11 +28,8 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     );
   }
 
-  if (!user) {
-    // Redirect to login with the current location for redirect after login
-    return <Navigate to="/login" state={{ from: location }} replace />;
-  }
-
+  if (!user) null
+  
   return <>{children}</>;
 };
 
