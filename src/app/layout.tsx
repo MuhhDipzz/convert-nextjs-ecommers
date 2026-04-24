@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -8,7 +7,7 @@ import QueryProvider from "@/providers/query-provider";
 // import { TooltipProvider } from "@/components/ui/tooltip";
 // import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import { AuthProvider } from "@/contexts/AuthContext";
+import { AuthProvider } from "@/contexts/AuthContext";
 // import { ThemeProvider } from "@/components/ThemeProvider";
 // import Navbar from "@/components/Navbar";
 // import ProtectedRoute from "@/components/ProtectedRoute";
@@ -30,9 +29,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <QueryProvider>
-        <body className="min-h-full flex flex-col">{children}</body>
-      </QueryProvider>
+      <AuthProvider>
+        <QueryProvider>
+          <body className="min-h-full flex flex-col">{children}</body>
+        </QueryProvider>
+      </AuthProvider>
     </html>
   );
 }
