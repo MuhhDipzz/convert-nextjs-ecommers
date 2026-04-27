@@ -1,5 +1,8 @@
+'use client'
+
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import {useRouter} from "next/navigation"
+import Link from 'next/link';
 import { Search, ShoppingCart, Menu, X, Home, Grid3X3, Heart, Store, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -7,10 +10,10 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useCartItems } from '@/hooks/useCart';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
-const Navbar = () => {
+const page = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const navigate = useNavigate();
+  const Router = useRouter();
   const { user, profile, role } = useAuth();
   const { data: cartItems } = useCartItems();
 
@@ -19,7 +22,7 @@ const Navbar = () => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      navigate(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
+      Router.push(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
     }
   };
 
@@ -45,7 +48,7 @@ const Navbar = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-14 md:h-16 gap-4">
             {/* Logo */}
-            <Link to="/" className="text-xl font-bold text-foreground flex-shrink-0">
+            <Link href="/" className="text-xl font-bold text-foreground flex-shrink-0">
               Tokoku
             </Link>
 
@@ -73,7 +76,7 @@ const Navbar = () => {
               <ThemeToggle />
               
               {role === 'seller' && (
-                <Link to="/admin">
+                <Link href  ="/admin">
                   <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-foreground hover:bg-[hsl(0_0%_100%/0.06)]">
                     <Store className="w-4 h-4" />
                     Seller Center
@@ -81,13 +84,13 @@ const Navbar = () => {
                 </Link>
               )}
 
-              <Link to="/wishlist">
+              <Link href="/wishlist">
                 <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground hover:bg-[hsl(0_0%_100%/0.06)]">
                   <Heart className="w-5 h-5" />
                 </Button>
               </Link>
 
-              <Link to="/cart" className="relative">
+              <Link href="/cart" className="relative">
                 <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground hover:bg-[hsl(0_0%_100%/0.06)]">
                   <ShoppingCart className="w-5 h-5" />
                   {cartCount > 0 && (
@@ -99,7 +102,7 @@ const Navbar = () => {
               </Link>
 
               {user ? (
-                <Link to="/profile" className="ml-2">
+                <Link href="/profile" className="ml-2">
                   <div className="flex items-center gap-2 p-1.5 pr-3 rounded-full glass-subtle hover:bg-[hsl(0_0%_100%/0.08)] transition-colors">
                     <Avatar className="w-7 h-7 border border-border/50">
                       <AvatarImage src={profile?.avatar_url || undefined} alt={profile?.name} />
@@ -111,7 +114,7 @@ const Navbar = () => {
                   </div>
                 </Link>
               ) : (
-                <Link to="/login">
+                <Link href="/login">
                   <Button size="sm" className="bg-foreground text-background hover:opacity-90">
                     Sign In
                   </Button>
@@ -121,7 +124,7 @@ const Navbar = () => {
 
             {/* Mobile Menu Toggle */}
             <div className="flex items-center gap-2 md:hidden">
-              <Link to="/cart" className="relative p-2">
+              <Link href="/cart" className="relative p-2">
                 <ShoppingCart className="w-5 h-5 text-foreground" />
                 {cartCount > 0 && (
                   <span className="absolute top-0 right-0 min-w-4 h-4 px-1 bg-foreground text-background text-[10px] font-medium rounded-full flex items-center justify-center">
@@ -167,7 +170,7 @@ const Navbar = () => {
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
-                  to={link.path}
+                  href={link.path}
                   onClick={() => setIsMenuOpen(false)}
                   className="flex items-center gap-3 p-3 rounded-xl hover:bg-[hsl(0_0%_100%/0.06)] transition-colors"
                 >
@@ -177,7 +180,7 @@ const Navbar = () => {
               ))}
               
               <Link
-                to="/wishlist"
+                href="/wishlist"
                 onClick={() => setIsMenuOpen(false)}
                 className="flex items-center gap-3 p-3 rounded-xl hover:bg-[hsl(0_0%_100%/0.06)] transition-colors"
               >
@@ -187,7 +190,7 @@ const Navbar = () => {
 
               {role === 'seller' && (
                 <Link
-                  to="/admin"
+                  href="/admin"
                   onClick={() => setIsMenuOpen(false)}
                   className="flex items-center gap-3 p-3 rounded-xl hover:bg-[hsl(0_0%_100%/0.06)] transition-colors"
                 >
@@ -199,7 +202,7 @@ const Navbar = () => {
               <div className="pt-2 border-t border-border">
                 {user ? (
                   <Link
-                    to="/profile"
+                    href="/profile"
                     onClick={() => setIsMenuOpen(false)}
                     className="flex items-center gap-3 p-3 rounded-xl hover:bg-[hsl(0_0%_100%/0.06)] transition-colors"
                   >
@@ -213,7 +216,7 @@ const Navbar = () => {
                   </Link>
                 ) : (
                   <Link
-                    to="/login"
+                    href="/login"
                     onClick={() => setIsMenuOpen(false)}
                     className="flex items-center gap-3 p-3 rounded-xl hover:bg-[hsl(0_0%_100%/0.06)] transition-colors"
                   >
@@ -230,4 +233,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default page;

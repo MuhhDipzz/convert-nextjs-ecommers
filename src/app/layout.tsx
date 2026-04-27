@@ -9,7 +9,7 @@ import QueryProvider from "@/providers/query-provider";
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 // import { ThemeProvider } from "@/components/ThemeProvider";
-// import Navbar from "@/components/Navbar";
+import Navbar from "@/components/Navbar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,7 +30,9 @@ export default function RootLayout({
     <html data-scroll-behavior="smooth" lang="en" className={`${inter.variable} h-full antialiased`}>
       <AuthProvider>
         <QueryProvider>
-          <body className="min-h-full flex flex-col">{children}</body>
+          <body className="min-h-full flex flex-col">
+            <Navbar/>
+            {children}</body>
         </QueryProvider>
       </AuthProvider>
     </html>

@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { SlidersHorizontal, ChevronDown } from "lucide-react";
@@ -5,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/ProductCard";
 import { useProducts, useCategories } from "@/hooks/useProducts";
 
-const Products = () => {
+const page = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [showFilters, setShowFilters] = useState(false);
@@ -173,4 +175,4 @@ const Products = () => {
     );
 };
 
-export default Products;
+export default page;
