@@ -18,7 +18,6 @@ const page = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Banner */}
-      
       <section className="py-6">
         <div className="container mx-auto px-4">
           <div className="glass-card p-6 md:p-10">

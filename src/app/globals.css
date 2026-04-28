@@ -6,21 +6,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ini untuk bagian base dari web nya */
-
-:root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-
-  --primary: 222.2 47.4% 11.2%;
-  --primary-foreground: 210 40% 98%;
-
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
-
-  --border: 214.3 31.8% 91.4%;
-}
-
 @layer base {
   :root {
     /* Light mode - keeping for system preference */
