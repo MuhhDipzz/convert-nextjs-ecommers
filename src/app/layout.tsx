@@ -8,7 +8,7 @@ import QueryProvider from "@/providers/query-provider";
 // import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
-// import { ThemeProvider } from "@/components/ThemeProvider";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
 
 const inter = Inter({
@@ -27,14 +27,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html data-scroll-behavior="smooth" lang="en" className={`${inter.variable} h-full antialiased`}>
-      <AuthProvider>
-        <QueryProvider>
-          <body className="min-h-full flex flex-col">
-            <Navbar/>
-            {children}</body>
-        </QueryProvider>
-      </AuthProvider>
+    <html
+      data-scroll-behavior="smooth"
+      lang="en"
+      className={`${inter.variable} h-full antialiased dark`}
+      suppressHydrationWarning
+    >
+      <body className="bg-background text-foreground min-h-full flex flex-col">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}  
+          disableTransitionOnChange
+        >
+          <AuthProvider>
+            <QueryProvider>
+              <Navbar />
+              {children}
+            </QueryProvider>
+          </AuthProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
