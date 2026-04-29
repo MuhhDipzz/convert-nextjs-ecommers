@@ -21,7 +21,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   };
 
   return (
-    <Link href={`/product/${product.id}`}>
+    <Link href={`/products/${product.id}`}>
       <div className="group glass-card overflow-hidden hover:bg-[hsl(0_0%_100%/0.08)] hover:border-[hsl(0_0%_100%/0.15)] transition-all duration-300">
         {/* Image Container */}
         <div className="relative aspect-square overflow-hidden bg-muted">

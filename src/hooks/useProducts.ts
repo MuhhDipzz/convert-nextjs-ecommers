@@ -18,6 +18,11 @@ export interface Product {
   seller_id: string;
   sold_count: number;
   created_at: string;
+  rating_avg?: number;
+  rating_count?: number;
+  seller_profile?: {
+    name?: string;
+  };
 }
 
 export interface Category {
@@ -69,6 +74,40 @@ export const useProducts = (filters?: {
 
       return data as Product[];
     },
+  });
+};
+
+/* ================= GET SINGLE PRODUCT ================= */
+
+export const useProduct = (id: string) => {
+  return useQuery({
+    queryKey: ['product', id],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('products')
+        .select(`
+          *,
+          category:categories(id, name, icon)
+        `)
+        .eq('id', id)
+        .maybeSingle();
+
+      if (error) throw error;
+      if (!data) return null;
+      
+      // Fetch seller profile
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('name, avatar_url')
+        .eq('user_id', data.seller_id)
+        .maybeSingle();
+      
+      return {
+        ...data,
+        seller_profile: profile
+      } as Product;
+    },
+    enabled: !!id
   });
 };
 

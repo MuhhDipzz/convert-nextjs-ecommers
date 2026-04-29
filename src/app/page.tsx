@@ -6,7 +6,7 @@ import ProductCard from "@/components/ProductCard";
 import CategoryIcon from "@/components/CategoryIcon";
 import { useProducts, useCategories } from "@/hooks/useProducts";
 
-const page = () => {
+const home = () => {
   const { data: products, isLoading: productsLoading } = useProducts({
     sortBy: "newest",
   });
@@ -146,4 +146,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default home;

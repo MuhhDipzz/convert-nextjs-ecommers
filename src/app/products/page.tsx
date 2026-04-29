@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/ProductCard";
 import { useProducts, useCategories } from "@/hooks/useProducts";
 
-const page = () => {
+const products = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [showFilters, setShowFilters] = useState(false);
@@ -32,7 +32,7 @@ const page = () => {
             params.delete(key);
         }
 
-        router.push(`/product?${params.toString()}`);
+        router.push(`/products?${params.toString()}`);
     };
 
     const handleCategoryChange = (id: string | null) => {
@@ -175,4 +175,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default products;

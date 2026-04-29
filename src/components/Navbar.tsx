@@ -10,7 +10,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useCartItems } from '@/hooks/useCart';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
-const page = () => {
+const navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const Router = useRouter();
@@ -233,4 +233,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default navbar;

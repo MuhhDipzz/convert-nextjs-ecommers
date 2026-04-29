@@ -243,7 +243,7 @@ const ProductForm = ({
     );
 };
 
-const page = () => {
+const dashboard = () => {
     const { user } = useAuth();
     const { toast } = useToast();
     const userId = user?.id;
@@ -575,4 +575,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default dashboard;
