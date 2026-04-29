@@ -152,7 +152,7 @@ const ProductDetail = () => {
 
                             {/* Rating - Monochrome */}
                             <div className="flex items-center gap-3 mt-2 text-sm text-muted-foreground">
-                                {product.rating_avg > 0 && (
+                                {product.rating_avg && (
                                     <div className="flex items-center gap-1">
                                         <Star className="w-4 h-4 fill-current text-foreground/60" />
                                         <span className="text-foreground">
