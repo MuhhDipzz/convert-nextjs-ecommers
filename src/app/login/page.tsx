@@ -34,8 +34,10 @@ const login = () => {
 
         const { error } = await signIn(email, password);
 
+        console.log("LOGIN ERROR:", error)
+
         if (error) {
-            toast({
+            toast({ 
                 title: "Login failed",
                 description: error.message,
                 variant: "destructive",
