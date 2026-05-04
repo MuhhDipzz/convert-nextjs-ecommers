@@ -20,9 +20,8 @@ export interface Product {
   created_at: string;
   rating_avg?: number;
   rating_count?: number;
-  seller_profile?: {
-    name?: string;
-  };
+  category?: { id: string; name: string; icon: string | null } | null;
+  seller_profile?: { name: string; avatar_url: string | null } | null;
 }
 
 export interface Category {
