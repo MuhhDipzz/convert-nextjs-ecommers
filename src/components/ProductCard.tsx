@@ -60,15 +60,18 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
           {/* Rating & Sold - Monochrome */}
           <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
-            {product.rating_avg > 0 && (
+            {(product.rating_avg ?? 0) > 0 && (
               <div className="flex items-center gap-1">
                 <Star className="w-3 h-3 fill-current text-foreground/60" />
-                <span>{product.rating_avg.toFixed(1)}</span>
+                <span>{(product.rating_avg ?? 0).toFixed(1)}</span>
               </div>
             )}
+
             {product.sold_count > 0 && (
               <>
-                {product.rating_avg > 0 && <span className="opacity-50">•</span>}
+                {(product.rating_avg ?? 0) > 0 && (
+                  <span className="opacity-50">•</span>
+                )}
                 <span>{product.sold_count} sold</span>
               </>
             )}
